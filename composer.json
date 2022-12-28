@@ -1,0 +1,28 @@
+{
+  "name": "xirelogy/magpie-s3-filesystem",
+  "description": "S3 FileSystem provider for PHP-magpie",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "JingXiang Tou",
+      "email": "jx@tou.st"
+    }
+  ],
+  "require": {
+    "xirelogy/magpie-core": "^0.1",
+    "aws/aws-sdk-php": "^3.240"
+  },
+  "autoload": {
+    "psr-4": {
+      "MagpieLib\\S3FileSystem\\": "src"
+    }
+  },
+  "extra": {
+    "magpie": {
+      "classes": [
+        "MagpieLib\\S3FileSystem\\S3FileSystem"
+      ]
+    }
+  }
+}

@@ -108,7 +108,7 @@ class S3FileSystemConfig extends FileSystemConfig
     /**
      * @inheritDoc
      */
-    protected static function specificFromEnv(EnvParserHost $parserHost, EnvKeySchema $envKey) : static
+    protected static function specificFromEnv(EnvParserHost $parserHost, EnvKeySchema $envKey, array $payload) : static
     {
         $endPoint = $parserHost->requires($envKey->key('ENDPOINT'), StringParser::create());
         $key = $parserHost->requires($envKey->key('KEY'), StringParser::create());

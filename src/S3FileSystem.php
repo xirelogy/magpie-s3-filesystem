@@ -183,7 +183,7 @@ class S3FileSystem extends FileSystem
     /**
      * @inheritDoc
      */
-    public function deleteDirectory(string $path) : bool
+    public function deleteDirectory(string $path, bool $isEmpty = true) : bool
     {
         if (!$this->isDirectoryExist($path)) return false;
 

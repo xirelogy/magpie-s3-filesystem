@@ -69,6 +69,10 @@ class S3FileSystem extends FileSystem
             ],
         ];
 
+        if ($config->getEndPointStyle() === S3EndPointStyle::PATH) {
+            $args['use_path_style_endpoint'] = true;
+        }
+
         $this->client = new S3Client($args);
     }
 

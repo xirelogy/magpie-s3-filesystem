@@ -7,6 +7,7 @@ use Magpie\Configurations\EnvKeySchema;
 use Magpie\Configurations\EnvParserHost;
 use Magpie\Facades\FileSystem\FileSystemConfig;
 use Magpie\General\Factories\Annotations\FactoryTypeClass;
+use MagpieLib\S3FileSystem\Codecs\Parsers\S3EndPointStyleParser;
 
 /**
  * Configuration for S3-compatible file system provider
@@ -34,6 +35,10 @@ class S3FileSystemConfig extends FileSystemConfig
      * @var string Region
      */
     protected string $region = '';
+    /**
+     * @var S3EndPointStyle End-point style
+     */
+    protected S3EndPointStyle $endPointStyle = S3EndPointStyle::SUBDOMAIN;
 
 
     /**
@@ -99,6 +104,28 @@ class S3FileSystemConfig extends FileSystemConfig
 
 
     /**
+     * Specific end-point style
+     * @return S3EndPointStyle
+     */
+    public function getEndPointStyle() : S3EndPointStyle
+    {
+        return $this->endPointStyle;
+    }
+
+
+    /**
+     * Specific end-point style
+     * @param S3EndPointStyle $style
+     * @return $this
+     */
+    public function withEndPointStyle(S3EndPointStyle $style) : static
+    {
+        $this->endPointStyle = $style;
+        return $this;
+    }
+
+
+    /**
      * @inheritDoc
      */
     public static function getTypeClass() : string
@@ -123,6 +150,9 @@ class S3FileSystemConfig extends FileSystemConfig
 
         $region = $parserHost->optional($envKey->key('REGION'), StringParser::create()->withEmptyAsNull());
         if ($region !== null) $ret->withRegion($region);
+
+        $endPointStyle = $parserHost->optional($envKey->key('ENDPOINT_STYLE'), S3EndPointStyleParser::create());
+        if ($endPointStyle !== null) $ret->withEndPointStyle($endPointStyle);
 
         return $ret;
     }

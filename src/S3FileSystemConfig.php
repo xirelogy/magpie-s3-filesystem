@@ -42,13 +42,15 @@ class S3FileSystemConfig extends FileSystemConfig
      * @param string $accessKey
      * @param string $accessSecret
      * @param string $bucket
+     * @param string $region
      */
-    public function __construct(string $endPoint, string $accessKey, string $accessSecret, string $bucket = '')
+    public function __construct(string $endPoint, string $accessKey, string $accessSecret, string $bucket = '', string $region = 'us-east-1')
     {
         $this->endPoint = $endPoint;
         $this->accessKey = $accessKey;
         $this->accessSecret = $accessSecret;
         $this->bucket = $bucket;
+        $this->region = $region;
     }
 
 

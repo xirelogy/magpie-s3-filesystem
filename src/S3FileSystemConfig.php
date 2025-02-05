@@ -171,6 +171,8 @@ class S3FileSystemConfig extends FileSystemConfig
      */
     public static function getConfigurationKeys() : iterable
     {
+        yield from parent::getConfigurationKeys();
+
         yield static::CONFIG_ENDPOINT =>
             ConfigKey::create('endpoint', true, StringParser::create(), desc: _l('Endpoint address'));
         yield static::CONFIG_KEY =>
